@@ -1,6 +1,6 @@
 public class SecondLargest {
     public static void main(String[] args) {
-        int[] a = {12, 35, 1, 10, 34, 1};
+        int a[] ={1,8,6,2,5,4,8,3,7};
         int n= a.length;
 
         int l = a[0];
