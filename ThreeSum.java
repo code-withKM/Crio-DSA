@@ -5,22 +5,38 @@ class ThreeSum {
     public List<List<Integer>> threeSum(Integer[] nums) {
         List<List<Integer>> result = new ArrayList<>();
 
-        HashMap<Integer,Integer> hm = new HashMap<>();
-        for(int j=0;j<nums.length;j++){
-            for(int k=0;k<nums.length-1;k++){
-                int x = 0-nums[j]-nums[k];
-                if(hm.containsKey(x)){
-                    int i = hm.get(x);
-                   
-                        result.add(Arrays.asList(nums[i], nums[j], nums[k]));
-                    
-                    
-             
-                }
-                hm.put(nums[j], j);
-                hm.put(nums[k], k);
+        int n = nums.length;
+        Arrays.sort(nums);
+        for(int i=0;i<n;i++){
+
+            if(i-1>=0 && nums[i]== nums[i-1]){
+                continue;
             }
-           
+            int l=i+1;
+            int r= nums.length-1;
+
+            while(l<r){
+
+                if(l-1>i && nums[l]==nums[l-1]){
+                    l++;
+                    continue;
+                    
+                }
+                int sum = nums[i]+nums[l]+nums[r];
+
+                if(sum==0){
+                    List<Integer>tr= new ArrayList<>();
+                    tr.add(nums[i]);
+                    tr.add(nums[l]);
+                    tr.add(nums[r]);
+                    result.add(tr);
+                    l++;
+                }else if(sum<0){
+                    l++;
+                }else{
+                    r--;
+                }
+            }
         }
         return result;
     }
